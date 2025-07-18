@@ -46,9 +46,9 @@ LEFT JOIN movimientos_stock m ON p.id_producto = m.id_producto
 GROUP BY p.id_producto, p.nombre_producto, s.cantidad_inicial;
 
 ```
-# 🧩Conceptos aplicados: JOIN, LEFT JOIN, GROUP BY, CASE WHEN, SUM
+# Conceptos aplicados: JOIN, LEFT JOIN, GROUP BY, CASE WHEN, SUM.
 
-### 🚨2.Alerta de productos con bajo stock (menor a 10 unidades)
+### 2.Alerta de productos con bajo stock (menor a 10 unidades).
 
 ```sql
 SELECT *
