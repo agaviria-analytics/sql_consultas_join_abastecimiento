@@ -8,9 +8,10 @@ Permite calcular el **stock actual** de productos a partir del inventario inicia
 
 ## 📁 Estructura del proyecto
 
-- `estructura_tablas.sql`: Define las 3 tablas principales (productos, stock inicial, movimientos).
+- `estructura_tablas.sql`: Define las 3 tablas principales (`productos`, `stock_inicial`, `movimientos_stock`).
 - `insertar_datos.sql`: Inserta productos, cantidades iniciales y movimientos simulados.
 - `consultas.sql`: Realiza consultas SQL para calcular stock actual y detectar alertas.
+- `consultas_sql_varias.sql`: Contiene otras consultas complementarias para practicar.
 
 ---
 
@@ -21,6 +22,7 @@ Permite calcular el **stock actual** de productos a partir del inventario inicia
 - Agrupaciones con `GROUP BY`
 - Condicionales con `CASE WHEN` dentro de funciones agregadas
 - Filtros con `WHERE` y subconsultas para generar alertas
+- Organización y exportación de resultados
 
 ---
 
@@ -47,10 +49,7 @@ GROUP BY p.id_producto, p.nombre_producto, s.cantidad_inicial;
 
 ```
 ### 🚨 2. Alerta de productos con bajo stock (menor a 10 unidades)
-
-Filtra los productos con inventario por debajo de 10 unidades:
-
-```sql
+```
 SELECT *
 FROM (
     SELECT 
@@ -70,3 +69,41 @@ FROM (
 WHERE stock_actual < 10;
 
 ```
+### 🧩 Consultas complementarias
+
+Estas consultas se encuentran en el archivo consultas_sql_varias.sql y permiten explorar otras operaciones básicas y útiles en SQL Server:
+
+### 🔍 Filtrar productos por categoría
+SELECT * 
+FROM productos 
+WHERE categoria = 'Granos';
+
+### 🔍 Ordenar productos por nombre
+SELECT * 
+FROM productos 
+ORDER BY nombre_producto;
+
+### 🔍 Mostrar solo nombre y categoría
+SELECT nombre_producto, categoria 
+FROM productos;
+
+### 🔍 Consultar movimientos de tipo 'salida'
+SELECT * 
+FROM movimientos_stock 
+WHERE tipo_movimiento = 'salida';
+
+### 🔍 Detectar productos sin movimientos (LEFT JOIN)
+SELECT p.nombre_producto, m.id_movimiento
+FROM productos p
+LEFT JOIN movimientos_stock m ON p.id_producto = m.id_producto;
+
+📌 Resultado esperado
+
+Con estas consultas se puede monitorear el estado del inventario, identificar necesidades de reposición y practicar conceptos clave de SQL para aplicaciones reales en logística, inventario o abastecimiento.
+
+💡 Autor
+
+Héctor Alejandro – Analista de Datos en formación
+Este proyecto hace parte de mi portafolio profesional. Puedes ver más en:
+🔗 agaviria-analytics.github.io
+

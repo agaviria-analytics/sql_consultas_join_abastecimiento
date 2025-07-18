@@ -30,3 +30,13 @@ INNER JOIN movimientos_stock m ON p.id_producto = m.id_producto;
 SELECT *
 FROM movimientos_stock
 WHERE tipo_movimiento = 'salida' AND cantidad > 5;
+
+--Consultar movimientos de tipo 'salida'
+SELECT * 
+FROM movimientos_stock 
+WHERE tipo_movimiento = 'salida';
+
+-- Detectar productos sin movimientos (LEFT JOIN)
+SELECT p.nombre_producto, m.id_movimiento
+FROM productos p
+LEFT JOIN movimientos_stock m ON p.id_producto = m.id_producto;
